@@ -1,0 +1,8 @@
+To access the console, create a port-forward to the logits-ingress-proxy:
+
+kubectl -n {{ .Release.Namespace }} port-forward svc/logits-ingress-proxy 8080:80
+
+Then load http://localhost:8080 in your browser.
+
+You can also optionally expose the logits-ingress-proxy behind an external
+load balancer or on a VPN.

@@ -1,0 +1,13 @@
+labels:
+#  example: label
+
+annotations:
+#  example: annotation
+
+tolerations:
+#- key: example
+#  effect: NoSchedule
+#  operator: Exists
+
+nodeSelector:
+#  kubernetes.io/os: linux

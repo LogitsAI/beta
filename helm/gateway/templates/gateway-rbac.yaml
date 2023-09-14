@@ -1,0 +1,61 @@
+# We use metadata from the Node objects to auto-configure Logits AI for your cluster.
+# This needs to be in a ClusterRole since Node is a cluster-level resource.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: logits-gateway
+rules:
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: logits-gateway
+subjects:
+- kind: ServiceAccount
+  name: logits-gateway
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: ClusterRole
+  name: logits-gateway
+  apiGroup: rbac.authorization.k8s.io
+---
+# The rest of the permissions below only apply within the namespace where Logits AI is installed.
+# We recommend installing Logits AI in its own namespace (e.g. "logits") so that it can't see
+# anything else in your cluster.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: logits-gateway
+  namespace: {{ .Release.Namespace }}
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "configmaps", "persistentvolumeclaims"]
+  verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+- apiGroups: [""]
+  resources: ["secrets"]
+  # For Secrets, our ServiceAccount only needs write permissions. Secrets are only ever read by
+  # mounting them into a Pod, not by calling the Kubernetes API with our ServiceAccount credentials.
+  # This makes it clear from the Pod Spec which Pods have access to which Secrets.
+  verbs: ["create", "update", "delete", "patch"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "replicasets", "statefulsets", "daemonsets"]
+  verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+- apiGroups: ["batch"]
+  resources:  ["jobs", "cronjobs"]
+  verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: logits-gateway
+  namespace: {{ .Release.Namespace }}
+subjects:
+- kind: ServiceAccount
+  name: logits-gateway
+roleRef:
+  kind: Role
+  name: logits-gateway
+  apiGroup: rbac.authorization.k8s.io
