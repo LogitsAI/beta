@@ -1,6 +1,6 @@
-# Logits AI Beta
+# Logits Beta
 
-This is the home of the [Logits AI](https://logits.ai) public beta program.
+This is the home of the [Logits](https://logits.ai) public beta program.
 
 Please use [Issues](https://github.com/LogitsAI/beta/issues) to report bugs
 and use [Discussions](https://github.com/LogitsAI/beta/discussions) for any other topics
@@ -8,7 +8,7 @@ such as [Q&A](https://github.com/LogitsAI/beta/discussions/categories/q-a).
 
 ## Introduction
 
-Logits AI is a fully-managed service for LLM inference and fine-tuning with a hybrid architecture
+Logits is a fully-managed service for LLM inference and fine-tuning with a hybrid architecture
 that combines the best of SaaS and self-hosting.
 
 Like a typical SaaS, we offer high-level APIs like Chat Completion and then take full
@@ -51,7 +51,7 @@ GPU in your Kubernetes cluster.
 Sign into our [Accounts](https://accounts.logits.ai/) dashboard to create your account and get
 your API key.
 
-Follow the instructions there to install Logits AI in your cluster and access the in-cluster console:
+Follow the instructions there to install Logits in your cluster and access the in-cluster console:
 
 ![Example installation instructions given by the Accounts dashboard](docs/images/helm-install.png)
 
@@ -68,7 +68,7 @@ try out your local model:
 You can also go back to the API tab in the console to see an example of how to make calls to the
 model from your own code running in the same Kubernetes cluster:
 
-![Python code sample for calling your internal Logits AI API endpoint](docs/images/api-code-sample.png)
+![Python code sample for calling your internal Logits API endpoint](docs/images/api-code-sample.png)
 
 ## Pricing and Support
 

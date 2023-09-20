@@ -1,6 +1,6 @@
 # Architecture
 
-This page describes the internal architecture of the Logits AI platform.
+This page describes the internal architecture of the Logits platform.
 
 You don't need to understand these implementation details to use the platform, and you should expect
 that the details could change without notice.
@@ -29,7 +29,7 @@ in order to receive instructions on what component versions they should be runni
 
 ## In-Cluster Components
 
-These are the key parts of the Logits AI stack that run in the customer's Kubernetes cluster.
+These are the key parts of the Logits stack that run in the customer's Kubernetes cluster.
 
 ### Gateway
 
@@ -62,7 +62,7 @@ cannot move even as we remotely upgrade other parts of our stack.
 
 ### Controller
 
-The Controller deploys and manages the rest of the Logits AI stack by synchronizing Kubernetes state
+The Controller deploys and manages the rest of the Logits stack by synchronizing Kubernetes state
 with various sources of configuration (e.g. from the Console or the API).
 It is similar to the controllers that make up a Kubernetes Operator, except that it is not
 configured through CRDs.
@@ -88,7 +88,7 @@ things like which models to enable and set autoscaling limits.
 
 ### API Server
 
-The API Server exposes the primary public API surface of the Logits AI platform.
+The API Server exposes the primary public API surface of the Logits platform.
 This is the service that your application will call to request things like Chat Completions.
 The API Server will then route requests by the `model` parameter and load-balance those requests
 across the available LLM Servers for that model.

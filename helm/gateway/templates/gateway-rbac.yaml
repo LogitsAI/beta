@@ -1,4 +1,4 @@
-# We use metadata from the Node objects to auto-configure Logits AI for your cluster.
+# We use metadata from the Node objects to auto-configure Logits for your cluster.
 # This needs to be in a ClusterRole since Node is a cluster-level resource.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -22,8 +22,8 @@ roleRef:
   name: logits-gateway
   apiGroup: rbac.authorization.k8s.io
 ---
-# The rest of the permissions below only apply within the namespace where Logits AI is installed.
-# We recommend installing Logits AI in its own namespace (e.g. "logits") so that it can't see
+# The rest of the permissions below only apply within the namespace where Logits is installed.
+# We recommend installing Logits in its own namespace (e.g. "logits") so that it can't see
 # anything else in your cluster.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
